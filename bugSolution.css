@@ -1,0 +1,22 @@
+The solution involves prioritizing the `:focus-visible` styles and structuring the CSS appropriately to avoid conflicts with custom focus styles:
+
+```css
+.my-element {
+  /* Other styles */
+}
+
+.my-element:focus {
+  /* Common focus styles, if any, should be applied here instead of the :focus-visible */
+}
+
+.my-element:focus-visible {
+  outline: 2px solid blue;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+}
+
+.my-element.focused {
+  /* Add custom styles as needed, but keep this separate from :focus-visible */
+}
+```
+
+The JavaScript remains largely the same but now works in harmony with a well structured CSS.  This separation of `:focus`, and `:focus-visible` styles provides more control and predictability ensuring `:focus-visible` takes precedence when it is needed.  It's important to test thoroughly across different browsers to ensure consistent behavior.
