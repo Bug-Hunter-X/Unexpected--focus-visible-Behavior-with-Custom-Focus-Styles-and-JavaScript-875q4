@@ -1,0 +1,30 @@
+The following CSS code snippet demonstrates an issue with unexpected behavior when using the `:focus-visible` pseudo-class in combination with custom styling and JavaScript focus management:
+
+```css
+.my-element:focus-visible {
+  outline: 2px solid blue;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+}
+
+.my-element {
+  /* Other styles */
+}
+```
+
+```javascript
+const myElement = document.querySelector('.my-element');
+
+myElement.addEventListener('focus', () => {
+  // Add custom focus behavior
+  myElement.classList.add('focused');
+});
+
+myElement.addEventListener('blur', () => {
+  // Remove custom focus behavior
+  myElement.classList.remove('focused');
+});
+```
+
+The unexpected behavior: While the `:focus-visible` pseudo-class generally aims to avoid showing focus indicators on elements that already have prominent visual feedback, adding custom focus styles (as done here) can interfere with this functionality. In some browsers or scenarios, the custom focus styles might override `:focus-visible`, thus causing the outline/box-shadow to always show even if not expected.
+
+This is subtle and can be hard to debug as it depends on the browser's interpretation of `:focus-visible` and how it interacts with other CSS rules and javascript focus management.
